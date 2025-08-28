@@ -1,0 +1,3 @@
+# AWS Comprehend Introduction
+
+## Notes

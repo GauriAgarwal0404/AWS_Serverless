@@ -1,0 +1,3 @@
+# Lambda External Dependencies
+
+## Notes
