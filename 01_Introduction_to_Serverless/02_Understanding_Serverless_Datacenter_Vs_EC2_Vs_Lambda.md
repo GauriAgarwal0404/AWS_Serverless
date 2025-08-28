@@ -63,3 +63,11 @@ aws ec2 run-instances --image-id ami-12345 --instance-type t3.medium
 
 ---
 💡 **Interview Tip:** Lambda = "Pay only when code runs, scale instantly, manage nothing"
+
+## 📸 Course Reference Slides
+
+### Slide 3: Serverless Evolution Overview
+![Serverless Evolution Overview](../assets/serverless_evolution_overview.png)
+
+### Slide 4: Datacenter vs EC2 vs Lambda Comparison  
+![Datacenter vs EC2 vs Lambda Comparison](../assets/datacenter_ec2_lambda_comparison.png)
