@@ -1,8 +1,8 @@
-# Understanding Serverless - Datacenter Vs EC2 Vs Lambda
+# 🏗️ Understanding Serverless - Datacenter Vs EC2 Vs Lambda
 
-## Quick Summary
+## 📋 Quick Summary
 
-### Traditional Datacenter vs EC2 vs Lambda
+### 🔄 Traditional Datacenter vs EC2 vs Lambda
 
 | Aspect | Datacenter | EC2 | Lambda |
 |--------|------------|-----|--------|
@@ -12,7 +12,7 @@
 | **Idle Cost** | Always paying | Always paying | Zero cost |
 | **Control** | Complete | High | Limited |
 
-### Key Characteristics
+### 🎯 Key Characteristics
 
 **Traditional Datacenter:**
 - Own physical servers
@@ -32,9 +32,9 @@
 - Automatic scaling (0 to thousands)
 - Focus only on code
 
-## Code Examples
+## 💻 Code Examples
 
-### EC2 Launch
+### 🚀 EC2 Launch
 ```bash
 # Launch EC2 instance
 aws ec2 run-instances \
@@ -43,7 +43,7 @@ aws ec2 run-instances \
     --count 1
 ```
 
-### Lambda Function
+### ⚡ Lambda Function
 ```python
 import json
 import boto3
@@ -56,7 +56,7 @@ def lambda_handler(event, context):
     }
 ```
 
-### Auto Scaling (EC2)
+### 📈 Auto Scaling (EC2)
 ```json
 {
   "AutoScalingGroupName": "web-servers",
@@ -66,7 +66,7 @@ def lambda_handler(event, context):
 }
 ```
 
-## Real-World Example: E-commerce App
+## 🌍 Real-World Example: E-commerce App
 
 **Datacenter:**
 - Buy 10 servers ($100K)
@@ -83,9 +83,9 @@ def lambda_handler(event, context):
 - Pay only during execution
 - Automatic scaling
 
-## Interview Q&A
+## ❓ Interview Q&A
 
-### Q1: When to use EC2 vs Lambda?
+### 🤔 Q1: When to use EC2 vs Lambda?
 
 **EC2:**
 - Long-running applications (>15 min)
@@ -99,44 +99,44 @@ def lambda_handler(event, context):
 - File processing
 - Microservices
 
-### Q2: What is cold start in Lambda?
+### ❄️ Q2: What is cold start in Lambda?
 - Initialization delay when function hasn't run recently
 - ~100-200ms latency
 - Mitigate with Provisioned Concurrency
 
-### Q3: Cost comparison example?
+### 💰 Q3: Cost comparison example?
 **1M requests/month:**
 - Datacenter: $5,000/month (fixed)
 - EC2: $60/month (always running)
 - Lambda: $12/month (pay per execution)
 
-### Q4: Lambda limitations?
+### ⚠️ Q4: Lambda limitations?
 - 15-minute execution limit
 - 10GB memory limit
 - Cold start latency
 - Vendor lock-in
 
-### Q5: Scaling differences?
+### 📊 Q5: Scaling differences?
 - **Datacenter**: Manual, weeks
 - **EC2**: 2-5 minutes to launch new instances
 - **Lambda**: Instant, up to 1000 concurrent executions
 
-### Q6: Security responsibility?
+### 🔒 Q6: Security responsibility?
 **Datacenter**: Everything (physical + virtual)
 **EC2**: OS, apps, security groups (shared model)
 **Lambda**: Only code and IAM (AWS handles infrastructure)
 
-### Q7: State management in serverless?
+### 🗃️ Q7: State management in serverless?
 - Lambda is stateless
 - Use DynamoDB, S3, or RDS for persistence
 - Container reuse for temporary caching
 
-### Q8: Migration path?
+### 🔄 Q8: Migration path?
 1. **Lift & Shift**: Move to EC2
 2. **Modernize**: Use cloud services
 3. **Optimize**: Break into Lambda functions
 
-## Key Takeaways
+## 🎯 Key Takeaways
 
 ✅ **Datacenter**: Maximum control, high cost, slow scaling  
 ✅ **EC2**: Balance of control and convenience, hourly billing  
