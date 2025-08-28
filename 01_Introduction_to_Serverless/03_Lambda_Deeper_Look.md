@@ -6,7 +6,7 @@
 - **No server management** - Focus on code, not infrastructure
 - **Event-driven execution** - Triggered by events, not continuous running
 - **Automatic scaling** - Scales from 0 to millions of requests
-- **Pay-per-use** - Only pay for actual execution time
+- **Pay-per-use** - Only pay for actual execution time and never pay for idle
 - **Stateless** - Each execution is independent
 - **Built-in availability and fault tolerance**
 
@@ -16,19 +16,7 @@
 - Process of starting EC2 instances from Amazon Machine Images (AMI)
 - Time required to boot up and initialize the instance
 - Cold start penalty in traditional computing
-
-**AWS Console Steps:**
-```bash
-# Through AWS Console:
-1. Navigate to EC2 Dashboard
-2. Click "Launch Instance"
-3. Select AMI (Amazon Linux, Ubuntu, etc.)
-4. Choose instance type
-5. Configure instance details
-6. Add storage and tags
-7. Configure security groups
-8. Launch with key pair
-```
+- Requires Patching and configuration for new upgrades
 
 **Why Serverless is Better:**
 - No AMI rehydration needed
@@ -53,15 +41,19 @@
 - **Amazon Kinesis** - Serverless data streaming
 - **Amazon SQS/SNS** - Serverless messaging
 - **Amazon Athena** - Serverless analytics
+- **AWS Glue**
+- **AWS AppSync**
 
 ## ⚡ AWS Lambda Deep Dive
 
 ### **What is AWS Lambda?**
 - **Function as a Service (FaaS)** platform
-- Run code without provisioning servers
+- Run code without provisioning or managing servers
 - Supports multiple languages (Python, Node.js, Java, C#, Go, Ruby)
-- Maximum execution time: 15 minutes
-- Memory allocation: 128 MB to 10,008 MB
+- Just upload your code and lambda takes care of everything required to run and scale your code with HA.
+- Pay only for the compute time you consume
+- Maximum execution time(runtime): 15 minutes
+- Memory allocation: 128 MB to 10,008 MB(10GB) after reInvent 2020
 
 ### **What Does Lambda Buy You?**
 ```python
@@ -89,6 +81,10 @@ Lambda Configuration:
   VPC Configuration: Optional network isolation
   Dead Letter Queue: Error handling
   Reserved Concurrency: Limit concurrent executions
+  CPU and Network allocated proportionally
+  Can be invoked synchronous (e.g. API) or asynchronous (e.g. SQS, S3)
+  Inherent integration with other AWS services
+  Wide range of use cases
 ```
 
 ### **Architectural Flexibility:**
@@ -143,6 +139,9 @@ User Voice → Alexa Device → Alexa Service → Lambda Function → Response �
 - **Cost Effective** - Pay per voice interaction
 - **Easy Development** - Focus on skill logic, not infrastructure
 
+**Serverless Applications**
+- Lambda gets triggered by an event 
+
 ## 📝 Quick Interview Points
 
 ### **Serverless Definition:**
@@ -164,3 +163,8 @@ User Voice → Alexa Device → Alexa Service → Lambda Function → Response �
 ---
 
 💡 **Key Takeaway:** Serverless is not just Lambda - it's an entire ecosystem that eliminates infrastructure management while providing unlimited scale and cost efficiency.
+
+## 📸 Screenshots
+
+### Serverless Application Events Architecture
+![Serverless Application Events](../assets/Serverless_application_events.png)
