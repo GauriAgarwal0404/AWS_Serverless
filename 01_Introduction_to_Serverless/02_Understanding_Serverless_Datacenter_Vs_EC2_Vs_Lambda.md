@@ -15,6 +15,8 @@
 **Datacenter:** Own servers, high cost, full control  
 **EC2:** Virtual machines, hourly billing, cloud flexibility  
 **Lambda:** Serverless, pay-per-use, zero management
+Pay for what you use
+(3 Invocations)
 
 ## 💻 Code Examples
 
