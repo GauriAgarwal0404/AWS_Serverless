@@ -248,27 +248,6 @@ key = urllib.parse.unquote_plus(event['Records'][0]['s3']['object']['key'])
 - S3 bucket and Lambda must be in same region
 - Cross-region triggers not supported
 
-## 💡 Best Practices
-
-### **Performance Optimization:**
-```python
-# Initialize boto3 client outside handler
-s3 = boto3.client('s3')  # Reused across invocations
-
-def lambda_handler(event, context):
-    # Handler code here
-```
-
-### **Error Handling:**
-```python
-try:
-    response = s3.get_object(Bucket=bucket, Key=key)
-except ClientError as e:
-    if e.response['Error']['Code'] == 'NoSuchKey':
-        print(f"Object {key} not found")
-    raise e
-```
-
 ### **Filtering Events:**
 ```python
 # Process only image files
