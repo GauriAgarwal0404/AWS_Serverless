@@ -150,3 +150,8 @@ A: Changes take effect immediately for new API calls
 
 ---
 💡 **Interview Tip:** "IAM Roles provide secure, temporary access for AWS services to communicate with each other without hardcoded credentials"
+
+## 📸 Screenshots
+
+### IAM Roles Architecture
+![IAM Roles](../assets/IAM_Roles.png)
