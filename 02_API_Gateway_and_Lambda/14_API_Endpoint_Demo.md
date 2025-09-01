@@ -1,3 +1,0 @@
-# API Endpoint Demo
-
-## Notes
