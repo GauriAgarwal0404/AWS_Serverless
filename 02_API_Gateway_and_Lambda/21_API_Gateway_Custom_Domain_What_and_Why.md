@@ -262,45 +262,6 @@ Solution: Ensure CNAME records added correctly in Route 53
 - Add exact CNAME records in hosted zone
 ```
 
-## � Complete Request Flow with Custom Domain
-
-### **Detailed Step-by-Step Flow:**
-
-**1. DNS Resolution:**
-```
-User requests: https://lambda-api.com/users
-Route 53 resolves: lambda-api.com → d-xyz123.execute-api.us-east-1.amazonaws.com
-```
-
-**2. SSL Handshake:**
-```
-Browser connects to API Gateway domain
-ACM certificate validates lambda-api.com
-Secure connection established
-```
-
-**3. API Gateway Processing:**
-```
-Request hits custom domain endpoint
-Base path mapping routes: / → prod stage
-API Gateway finds resource: /users
-Method: GET is invoked
-```
-
-**4. Lambda Execution:**
-```
-API Gateway triggers Lambda function
-Lambda processes the request
-Returns response to API Gateway
-```
-
-**5. Response Delivery:**
-```
-API Gateway processes response
-Returns through custom domain
-User receives response from lambda-api.com
-```
-
 ## 🎯 Real-World Scenario
 
 ### **E-commerce API Setup:**
