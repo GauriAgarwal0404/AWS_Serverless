@@ -225,7 +225,6 @@ API_URL = "https://lambda-api.com"
 4. Check SSL certificate in browser (should be valid)
 ```
 
-
 ### **Permissions Required:**
 ```
 IAM Permissions:
@@ -234,32 +233,68 @@ IAM Permissions:
 - apigateway:*
 - iam:CreateServiceLinkedRole
 ```
-```
+
 
 ## 🚨 Common Issues & Solutions
 
-### **Certificate Issues:**
-```
-Problem: Certificate not appearing in API Gateway
-Solution: Ensure certificate is in correct region
-- Regional endpoint: Same region as API Gateway
-- Edge-optimized: us-east-1 region only
-```
+### **1. Certificate Issues:**
+**Problem:** Certificate not appearing in API Gateway dropdown
+**Solution:** 
+- Regional endpoint: Certificate must be in same region as API Gateway
+- Edge-optimized: Certificate must be in us-east-1 region only
+- Check certificate status is "Issued"
 
-### **DNS Issues:**
-```
-Problem: Custom domain not resolving
-Solution: Check DNS propagation
-- Use: dig lambda-api.com
-- Verify A record points to API Gateway domain
-```
+### **2. DNS Issues:**
+**Problem:** Custom domain not resolving
+**Solution:** 
+- Check DNS propagation: `dig lambda-api.com`
+- Verify A record points to correct API Gateway domain
+- Wait up to 48 hours for global DNS propagation
+- Use online DNS checker tools
 
-### **SSL Issues:**
-```
-Problem: SSL certificate validation stuck
-Solution: Ensure CNAME records added correctly in Route 53
-- Check ACM console for required CNAME values
-- Add exact CNAME records in hosted zone
+### **3. SSL Certificate Validation Issues:**
+**Problem:** Certificate validation stuck in "Pending validation"
+**Solution:** 
+- Ensure CNAME records added correctly in Route 53
+- Check ACM console for exact CNAME name and value
+- Add records to the hosted zone, not registrar
+- Wait 5-30 minutes after adding CNAME records
+
+### **4. API Gateway Domain Not Found:**
+**Problem:** Target domain name not appearing in Route 53
+**Solution:** 
+- Ensure custom domain is created successfully
+- Copy exact target domain name from API Gateway console
+- Select correct region in Route 53 alias target
+
+### **5. HTTPS/SSL Errors:**
+**Problem:** SSL certificate warnings in browser
+**Solution:** 
+- Verify certificate covers exact domain name
+- Use wildcard certificate for subdomains: `*.example.com`
+- Clear browser cache and try incognito mode
+
+### **6. Base Path Mapping Issues:**
+**Problem:** 404 errors after custom domain setup
+**Solution:** 
+- Verify base path mapping is configured correctly
+- Check API is deployed to correct stage
+- Ensure path mapping points to right API and stage
+
+
+### **Testing Commands:**
+```bash
+# Test DNS resolution
+dig lambda-api.com
+
+# Test SSL certificate
+curl -I https://lambda-api.com
+
+# Test API endpoint
+curl https://lambda-api.com/users
+
+# Compare with original URL
+curl https://abc123.execute-api.us-east-1.amazonaws.com/prod/users
 ```
 
 ## 🎯 Real-World Scenario
@@ -271,21 +306,13 @@ Solution: Ensure CNAME records added correctly in Route 53
 **API Structure:**
 ```
 https://api.mystore.com/
-├── /products
-├── /orders
-├── /users
-├── /payments
-└── /inventory
+├── /products     → Product catalog
+├── /orders       → Order management
+├── /users        → User authentication
+├── /payments     → Payment processing
+└── /inventory    → Stock management
 ```
 
-**Configuration:**
-```
-1. Domain: api.mystore.com
-2. Certificate: *.mystore.com (wildcard)
-3. API Gateway: Regional endpoint
-4. Base Path: / → prod stage
-5. Route 53: A record → API Gateway domain
-```
 ## ❓ Quick Interview Q&A
 
 **Q: Why use custom domain for API Gateway?**  
