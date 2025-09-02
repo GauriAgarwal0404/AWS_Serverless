@@ -1,3 +1,0 @@
-# HTTP API Demo
-
-## Notes
