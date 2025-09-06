@@ -1,3 +1,0 @@
-# Lambda Destinations
-
-## Notes
